@@ -52,7 +52,7 @@ The supporting metadata in this data are name of features and name of activities
 features <- read.table("UCI HAR Dataset/features.txt")
 activity_labels <- read.table("UCI HAR Dataset/activity_labels.txt")
 ```
-##2. Extracts only measurements of mean and standard deviation for each measurement
+####2. Extracts only measurements of mean and standard deviation for each measurement
 
 Extract column indices that have either mean or std in them.
 ```{r}
@@ -60,7 +60,7 @@ extractFeatures <- grep(".*mean.*|.*std.*", features[,2])
 extractFeatures.names <- features[extractFeatures,2]
 ```
 
-#4. Appropriately labels the data set with descriptive variable names. 
+####4. Appropriately labels the data set with descriptive variable names. 
 Acc can be replaced with Accelerometer
 Gyro can be replaced with Gyroscope
 BodyBody can be replaced with Body
@@ -101,7 +101,7 @@ test <- cbind(subject_test, y_test, x_test)
 ```
 
 
-##1. Merge training and test sets to create one data set
+####1. Merge training and test sets to create one data set
 We can use rbind to combine respective data in training and test data sets corresponding to subject, activity and features. The results are stored in `subject`, `activity` and `features`.
 ```{r}
 mergedDataset <- rbind(train, test)
@@ -109,14 +109,14 @@ colnames(mergedDataset) <- c("subject", "activity", extractFeatures.names
 ```
 
 
-##3. Uses descriptive activity names to name the activities in the data set
+####3. Uses descriptive activity names to name the activities in the data set
 Set `activity`, `Subject` as a factor variable. 
 ```{r}
 mergedDataset$activity <- factor(mergedDataset$activity, levels = activity_labels[,1], labels = activity_labels[,2])
 mergedDataset$subject <- as.factor(mergedDataset$subject)
 ```
 
-##5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
+####5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
 
 ```{r}
 mergedDataset.melted <- melt(mergedDataset, id = c("subject", "activity"))

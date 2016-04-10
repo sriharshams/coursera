@@ -69,19 +69,19 @@ Character 'f' can be replaced with Frequency
 Character 't' can be replaced with Time
 
 ```{r}
-extractFeatures.names = gsub("Acc", "Accelerometer", extractFeatures.names)
-extractFeatures.names = gsub("Gyro", "Gyroscope", extractFeatures.names)
-extractFeatures.names = gsub("BodyBody", "Body", extractFeatures.names)
-extractFeatures.names = gsub("Mag", "Magnitude", extractFeatures.names)
-extractFeatures.names = gsub("freq", "Frequency", extractFeatures.names)
-extractFeatures.names = gsub("^t", "Time", extractFeatures.names)
-extractFeatures.names = gsub("^f", "Frequency", extractFeatures.names)
-extractFeatures.names = gsub("tBody", "TimeBody", extractFeatures.names)
-extractFeatures.names = gsub('-mean', 'Mean', extractFeatures.names)
-extractFeatures.names = gsub("-std", "Std", extractFeatures.names)
+extractFeatures.names <- gsub("Acc", "Accelerometer", extractFeatures.names)
+extractFeatures.names <- gsub("Gyro", "Gyroscope", extractFeatures.names)
+extractFeatures.names <- gsub("BodyBody", "Body", extractFeatures.names)
+extractFeatures.names <- gsub("Mag", "Magnitude", extractFeatures.names)
+extractFeatures.names <- gsub("freq", "Frequency", extractFeatures.names)
+extractFeatures.names <- gsub("^t", "Time", extractFeatures.names)
+extractFeatures.names <- gsub("^f", "Frequency", extractFeatures.names)
+extractFeatures.names <- gsub("tBody", "TimeBody", extractFeatures.names)
+extractFeatures.names <- gsub('-mean', 'Mean', extractFeatures.names)
+extractFeatures.names <- gsub("-std", "Std", extractFeatures.names)
 extractFeatures.names <- gsub("[-()]", "", extractFeatures.names)
-extractFeatures.names = gsub("angle", "Angle", extractFeatures.names)
-extractFeatures.names = gsub("gravity", "Gravity", extractFeatures.names)
+extractFeatures.names <- gsub("angle", "Angle", extractFeatures.names)
+extractFeatures.names <- gsub("gravity", "Gravity", extractFeatures.names)
 ```
 
 ###Read training data

@@ -61,12 +61,12 @@ extractFeatures.names <- features[extractFeatures,2]
 ```
 
 #4. Appropriately labels the data set with descriptive variable names. 
-#Acc can be replaced with Accelerometer
-#Gyro can be replaced with Gyroscope
-#BodyBody can be replaced with Body
-#Mag can be replaced with Magnitude
-#Character 'f' can be replaced with Frequency
-#Character 't' can be replaced with Time
+Acc can be replaced with Accelerometer
+Gyro can be replaced with Gyroscope
+BodyBody can be replaced with Body
+Mag can be replaced with Magnitude
+Character 'f' can be replaced with Frequency
+Character 't' can be replaced with Time
 
 ```{r}
 extractFeatures.names = gsub("Acc", "Accelerometer", extractFeatures.names)

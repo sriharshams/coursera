@@ -30,7 +30,7 @@ In this repository, you find:
 - *CodeBook.md* : a code book that describes the variables, for data in *Tidy.txt*. 
 
 
-Below steps describes all transformations performed to clean up source data <https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip> 
+Below steps describes all transformations performed to clean up source data (<https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip>) 
 
 
 ## Getting Started

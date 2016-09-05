@@ -1,0 +1,81 @@
+---
+title: "Exponential distribution in R VS Central Limit Theorem (CLT)"
+author: "Sriharsha M S"
+date: "June 26, 2016"
+output: pdf_document
+---
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+
+library(ggplot2)
+
+```
+
+
+### Overview
+
+In this project we will investigate the exponential distribution in R and compare it with the Central Limit Theorem (CLT). 
+
+The exponential distribution can be simulated in R with the `rexp(n, lambda)` function where lambda $\lambda$ represents the rate parameter. The mean of an exponential distribution is $\mu = \frac{1}{\lambda}$ and the standard deviation is $\sigma = \frac{1}{\lambda}$. 
+
+According the CLT if a sample consists of at least 30 independent observations and the data are not strongly skewed, then the distribution of the sample mean, the sampling distribution, is well approximated by a normal model which expressed in mathematical notation is: $\bar{x}_{n}$ ~ $N(\mu, \frac{\sigma }{\sqrt{n}})$.
+
+In general, a sampling distribution represents the distribution of the point estimates based on samples of a fixed size from a certain population. It is useful to think of a particular point estimate as being drawn from such a distribution.
+
+In this analysis we will show that the sampling distribution of the mean of an exponential distribution with $n = 40$ observations and $\lambda = 0.2$ is indeed approximately $N(\frac{1}{0.2}, \frac{\frac{1}{0.2}}{\sqrt{40}})$ distributed.
+
+
+### Comparison of the sample mean and the theoretical mean of the distribution
+
+In the following we will draw 1000 samples of size 40 from an $Exp(\frac{1}{0.2}, \frac{1}{0.2})$ distribution. For each of the 1000 samples we will calculate the mean. Theoretically, this the same as drawing a single sample of size 1000 from the corresponding sampling distribution with $N(\frac{1}{0.2}, \frac{\frac{1}{0.2}}{\sqrt{40}})$.
+
+According to the CLT we would expect that each single mean of those 1000 means is already  approximately $\frac{1}{\lambda} = \frac{1}{0.2} = 5$. Since we now caluculate the mean of 1000 sampled means we expect the output to be very close to 5.
+
+We will check if this is the case.
+
+```{r}
+
+set.seed(1234)
+
+simMeans <- NULL
+for(i in 1:1000) {
+  simMeans <- c(simMeans, mean(rexp(40, 0.2)))
+}
+mean(simMeans)
+
+```
+
+$\bar{x}$ in our case is `r round(mean(simMeans), 2)` which is very close to the mean of the theoretical distribution namely $\mu = \frac{1}{0.2} = 5$.
+
+
+### Comparison of the sample variance with the theoretical distribution
+
+According to the CLT we would expect that the variance of the sample of the 1000 means is approximately $\frac{\frac{1}{0.2^{2}}}{40} = 0.625$.
+
+```{r}
+
+var(simMeans)
+
+```
+
+$s^{2}$ in our case is `r round(var(simMeans), 2)` which is close to the variance of the theoretical distribution we mentioned above.
+
+### Showing that the sample distribution is approximately normal
+
+In order to demonstrate that the sample distribution of the 1000 sampled means is approximately normal we will plot the correspondent histogram  and overlay it with the density function from the theoretical sampling distribution which is $N(\frac{1}{0.2}, \frac{\frac{1}{0.2}}{\sqrt{40}})$ distributed. 
+
+```{r fig.height=4, fig.width=4}
+data <- as.data.frame(simMeans)
+ggplot(data, aes(x = simMeans)) + 
+  geom_histogram(binwidth = 0.2, color = 'black', fill="#0072B2", aes(y = ..density..)) +
+  stat_function( fun = dnorm, color = 'red', size=2, 
+                args = list(mean = 5, sd = sqrt(0.625))) +
+  xlab('Sample mean') +
+  ylab('Density') +
+  ggtitle('Comparison of the sample distribution\n and the theoretical distribution')
+
+```
+
+### Conclusions
+
+In this analysis we showed that the sampling distribution of the mean of an exponential distribution with $n = 40$ observations and $\lambda = 0.2$ is approximately $N(\frac{1}{0.2}, \frac{\frac{1}{0.2}}{\sqrt{40}})$ distributed.

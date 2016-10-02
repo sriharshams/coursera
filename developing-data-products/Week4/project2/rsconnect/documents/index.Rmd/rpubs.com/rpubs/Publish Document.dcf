@@ -1,0 +1,7 @@
+name: Publish Document
+account: rpubs
+server: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/214487/9c8b843de4e74a5b826c6bcc03bdde32
+bundleId: https://api.rpubs.com/api/v1/document/214487/9c8b843de4e74a5b826c6bcc03bdde32
+url: http://rpubs.com/sriharshams/214487
+when: 1475427975.23756
